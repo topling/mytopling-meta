@@ -1,0 +1,30 @@
+[submodule "mytopling"]
+	path = mytopling
+	url = https://github.com/topling/mytopling.git
+[submodule "toplingdb"]
+	path = toplingdb
+	url = https://github.com/topling/toplingdb.git
+[submodule "toplingdb-sideplugin/topling-zip"]
+	path = toplingdb-sideplugin/topling-zip
+	url = https://github.com/topling/topling-zip.git
+[submodule "toplingdb-sideplugin/topling-dcompact"]
+	path = toplingdb-sideplugin/topling-dcompact
+	url = https://github.com/topling/topling-dcompact.git
+[submodule "toplingdb-sideplugin/topling-zip_table_reader"]
+	path = toplingdb-sideplugin/topling-zip_table_reader
+	url = https://github.com/topling/topling-zip_table_reader.git
+[submodule "toplingdb-sideplugin/topling-rocks"]
+	path = toplingdb-sideplugin/topling-rocks
+	url = git@github.com:rockeet/topling-rocks.git
+[submodule "toplingdb-sideplugin/cspp-memtable"]
+	path = toplingdb-sideplugin/cspp-memtable
+	url = git@github.com:topling/cspp-memtable.git
+[submodule "toplingdb-sideplugin/cspp-wbwi"]
+	path = toplingdb-sideplugin/cspp-wbwi
+	url = git@github.com:topling/cspp-wbwi.git
+[submodule "toplingdb-sideplugin/topling-sst"]
+	path = toplingdb-sideplugin/topling-sst
+	url = git@github.com:topling/topling-sst.git
+[submodule "toplingdb-sideplugin/toplingdb-fs"]
+	path = toplingdb-sideplugin/toplingdb-fs
+	url = git@github.com:topling/toplingdb-fs.git
