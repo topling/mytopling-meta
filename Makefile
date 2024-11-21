@@ -60,7 +60,8 @@ ${MyToplingBuild}/Makefile:
 		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE_${DEBUG_LEVEL}} \
 	   ${DFORCE_CPU_ARCH}
 
-build-mytopling: ${MyToplingBuild}/Makefile install-toplingdb
+#build-mytopling: install-toplingdb
+build-mytopling: ${MyToplingBuild}/Makefile
 	+$(MAKE) -C ${MyToplingBuild}
 
 install-mytopling: install-toplingdb build-mytopling
