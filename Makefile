@@ -51,6 +51,7 @@ build-toplingdb:
 install-toplingdb: build-toplingdb
 	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} LIBDIR=${TOPLING_LIB_DIR} install
 
+.PHONY: ${MyToplingBuild}/Makefile
 ${MyToplingBuild}/Makefile:
 	cd mytopling; \
 	env BUILD_DIR=${MyToplingBuild} \
