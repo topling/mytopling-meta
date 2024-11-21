@@ -11,7 +11,7 @@ dummy:=$(shell cd toplingdb-sideplugin; \
                done \
        )
 
-ifeq ($(filter clean,${MAKECMDGOALS}),)
+ifeq ($(filter clean%,${MAKECMDGOALS}),)
 ifndef PREFIX
   $(error var PREFIX must be defined for toplingdb install)
 endif
@@ -61,8 +61,11 @@ ${MyToplingBuild}/Makefile:
 		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE_${DEBUG_LEVEL}} \
 	   ${DFORCE_CPU_ARCH}
 
-#build-mytopling: install-toplingdb
-build-mytopling: ${MyToplingBuild}/Makefile
+# build-mytopling-pre build most componets which not dep on librocksdb.so
+build-mytopling-pre: ${MyToplingBuild}/Makefile
+	+$(MAKE) -C ${MyToplingBuild} innobase binlog mysqlclient
+
+build-mytopling: install-toplingdb build-mytopling-pre
 	+$(MAKE) -C ${MyToplingBuild}
 
 install-mytopling: install-toplingdb build-mytopling
