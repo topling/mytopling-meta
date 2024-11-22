@@ -26,7 +26,8 @@ sudo apt-get install -y gcc-12 libjemalloc-dev libaio-dev libgflags-dev \
 ```bash
 git clone https://github.com/topling/mytopling-meta.git
 cd mytopling-meta
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
+# source /opt/rh/gcc-toolset-12/enable # changing gcc version for CentOS
 ```
 
 ## Compile & Install
