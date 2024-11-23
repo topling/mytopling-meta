@@ -29,7 +29,7 @@ ifdef CPU
   define errmsg
 var CPU=-march=[haswell,...] is for toplingdb, DO NOT use CPU!
                  Use FORCE_CPU_ARCH=[haswell,...], if FORCE_CPU_ARCH is defined,
-                 this Makefile will auto set CPU by for toplingdb by FORCE_CPU_ARCH
+                 this Makefile will auto set CPU for toplingdb by FORCE_CPU_ARCH
   endef
   $(error ${errmsg})
 endif
