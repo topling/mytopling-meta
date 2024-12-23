@@ -59,6 +59,7 @@ ${MyToplingBuild}/Makefile:
 		-DWITH_UNIT_TESTS=OFF \
 		-DTOPLING_LIB_DIR=${TOPLING_LIB_DIR} \
 		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE_${DEBUG_LEVEL}} \
+		-DWITH_UNIT_TESTS=OFF \
 	   ${DFORCE_CPU_ARCH}
 
 # build-mytopling-pre build most componets which not dep on librocksdb.so
