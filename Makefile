@@ -43,6 +43,8 @@ endif
 export ROCKSDB_HOME := $(shell realpath toplingdb)
 export TERARK_HOME  := $(shell realpath toplingdb-sideplugin/topling-zip)
 
+BOOST_OK_FILE := boost_1_77_0/boost/version.hpp
+
 all: build-toplingdb build-mytopling
 
 build-toplingdb:
@@ -52,7 +54,7 @@ install-toplingdb: build-toplingdb
 	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} LIBDIR=${TOPLING_LIB_DIR} install
 
 .PHONY: ${MyToplingBuild}/Makefile
-${MyToplingBuild}/Makefile:
+${MyToplingBuild}/Makefile: ${BOOST_OK_FILE}
 	cd mytopling; \
 	env BUILD_DIR=${MyToplingBuild} \
 	    bash -x build.sh \
@@ -60,6 +62,7 @@ ${MyToplingBuild}/Makefile:
 		-DTOPLING_LIB_DIR=${TOPLING_LIB_DIR} \
 		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE_${DEBUG_LEVEL}} \
 		-DWITH_UNIT_TESTS=OFF \
+		${MYTOPLING_CMAKE_EXTRA_ARGS} \
 	   ${DFORCE_CPU_ARCH}
 
 # build-mytopling-pre build most componets which not dep on librocksdb.so
@@ -88,3 +91,8 @@ clean:
 
 clean-topling-zip_table_reader:
 	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} $@
+
+${BOOST_OK_FILE}: boost_1_77_0.tar.bz2
+	tar xjf boost_1_77_0.tar.bz2
+boost_1_77_0.tar.bz2:
+	wget https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2

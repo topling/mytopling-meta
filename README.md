@@ -20,6 +20,17 @@ sudo apt-get install -y gcc-12 libjemalloc-dev libaio-dev libgflags-dev \
     zlib1g-dev libbz2-dev libcurl4-gnutls-dev liburing-dev libsnappy-dev \
     libbz2-dev liblz4-dev libzstd-dev which python3 cmake libncurses5-dev \
     pkg-config bison libudev-dev git libssl-dev
+# mytopling-8.0.32 prerequisites:
+sudo apt-get install -y libopenblas-dev libopenblas-openmp-dev libomp-dev gfortran
+```
+
+1. Maybe needs to make soft link:
+```bash
+ln -s libgfortran.so.5 /usr/lib/x86_64-linux-gnu/libgfortran.so
+```
+2. Maybe needs to add extra args or export env when calling make:
+```bash
+MYTOPLING_CMAKE_EXTRA_ARGS="-DWITH_OPENMP=/usr/lib/llvm-18"
 ```
 
 ## Before Compile
@@ -49,3 +60,10 @@ Install dcompact_worker and mytopling dcompact shared lib:
 ```bash
 make -j`nproc` PREFIX=/absolute/path/for/dcompact install-dcompact
 ```
+
+## Notes
+* MyTopling-8.0.32 use ToplingDB-8.10.2
+* MyTopling-8.0.28 use ToplingDB-8.04.2
+
+## Known issues
+mysqld may can not graceful stopped, it will coredump on stop, but this has no known harm.
