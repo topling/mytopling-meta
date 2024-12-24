@@ -19,10 +19,7 @@ sudo apt-get update -y
 sudo apt-get install -y gcc-12 libjemalloc-dev libaio-dev libgflags-dev \
     zlib1g-dev libbz2-dev libcurl4-gnutls-dev liburing-dev libsnappy-dev \
     libbz2-dev liblz4-dev libzstd-dev which python3 cmake libncurses5-dev \
-    pkg-config bison libudev-dev git libssl-dev
-sudo apt-get install -y wget
-# mytopling-8.0.32 prerequisites:
-sudo apt-get install -y libopenblas-dev libopenblas-openmp-dev libomp-dev
+    pkg-config bison libudev-dev git libssl-dev g++ wget libopenblas-dev
 ```
 
 ## Before Compile
