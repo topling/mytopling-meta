@@ -22,16 +22,7 @@ sudo apt-get install -y gcc-12 libjemalloc-dev libaio-dev libgflags-dev \
     pkg-config bison libudev-dev git libssl-dev
 sudo apt-get install -y wget
 # mytopling-8.0.32 prerequisites:
-sudo apt-get install -y libopenblas-dev libopenblas-openmp-dev libomp-dev gfortran
-```
-
-1. Maybe needs to make soft link:
-```bash
-ln -s libgfortran.so.5 /usr/lib/x86_64-linux-gnu/libgfortran.so
-```
-2. Maybe needs to add extra args or export env when calling make:
-```bash
-MYTOPLING_CMAKE_EXTRA_ARGS="-DWITH_OPENMP=/usr/lib/llvm-18"
+sudo apt-get install -y libopenblas-dev libopenblas-openmp-dev libomp-dev
 ```
 
 ## Before Compile
