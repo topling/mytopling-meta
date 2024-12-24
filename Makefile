@@ -16,6 +16,8 @@ ifndef PREFIX
   $(error var PREFIX must be defined for toplingdb install)
 endif
 endif
+# shell realpath works on path does not exists
+override PREFIX := $(shell realpath ${PREFIX})
 
 DEBUG_LEVEL ?= 0
 TOPLING_LIB_DIR ?= ${PREFIX}/lib
@@ -92,7 +94,7 @@ clean:
 clean-topling-zip_table_reader:
 	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} $@
 
-${BOOST_OK_FILE}: boost_1_77_0.tar.bz2
+${BOOST_OK_FILE}: | boost_1_77_0.tar.bz2
 	tar xjf boost_1_77_0.tar.bz2
 boost_1_77_0.tar.bz2:
 	wget https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2
