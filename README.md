@@ -8,7 +8,8 @@ sudo yum config-manager --set-enabled crb        # CentOS-9
 sudo yum install -y liburing-devel git gflags-devel libcurl-devel \
     snappy-devel zlib-devel bzip2-devel lz4-devel libaio-devel \
     cmake nfs-utils openssl-devel ncurses-devel libtirpc-devel \
-    rpcgen bison libudev-devel gcc-toolset-12 python3 which rpm-build
+    rpcgen bison libudev-devel gcc-toolset-12 python3 which rpm-build openblas-devel
+sudo yum install perl-File-Copy # CentOS9    
 ```
 
 ## Prerequisite on Debian & Ubuntu
@@ -48,6 +49,14 @@ make -j`nproc` PREFIX=/absolute/path FORCE_CPU_ARCH=sandybridge
 Install dcompact_worker and mytopling dcompact shared lib:
 ```bash
 make -j`nproc` PREFIX=/absolute/path/for/dcompact install-dcompact
+```
+## For gocryptfs
+
+```bash
+# by default, there is no libcrypto.so.3 file
+ln -s libcrypto-<version>.so.3 libcrypto.so.3
+gocryptfs ...
+# gocryptfs rpath : $ORIGIN:$ORIGIN/../lib:$ORIGIN/../lib/private
 ```
 
 ## Notes
