@@ -16,6 +16,8 @@ ifndef PREFIX
   $(error var PREFIX must be defined for toplingdb install)
 endif
 endif
+# shell realpath works on path does not exists
+override PREFIX := $(shell realpath ${PREFIX})
 
 DEBUG_LEVEL ?= 0
 TOPLING_LIB_DIR ?= ${PREFIX}/lib
