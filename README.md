@@ -9,7 +9,7 @@ sudo yum install -y liburing-devel git gflags-devel libcurl-devel \
     snappy-devel zlib-devel bzip2-devel lz4-devel libaio-devel \
     cmake nfs-utils openssl-devel ncurses-devel libtirpc-devel \
     rpcgen bison libudev-devel gcc-toolset-12 python3 which rpm-build openblas-devel
-sudo yum install perl-File-Copy # CentOS9    
+sudo yum install perl-File-Copy # CentOS9
 ```
 
 ## Prerequisite on Debian & Ubuntu
@@ -21,6 +21,7 @@ sudo apt-get install -y gcc-12 libjemalloc-dev libaio-dev libgflags-dev \
     zlib1g-dev libbz2-dev libcurl4-gnutls-dev liburing-dev libsnappy-dev \
     libbz2-dev liblz4-dev libzstd-dev which python3 cmake libncurses5-dev \
     pkg-config bison libudev-dev git libssl-dev g++ wget libopenblas-dev
+sudo apt remove libopenblas0-pthread # must!
 ```
 
 ## Before Compile
