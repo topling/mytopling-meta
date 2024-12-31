@@ -64,5 +64,6 @@ gocryptfs ...
 * MyTopling-8.0.32 use ToplingDB-8.10.2
 * MyTopling-8.0.28 use ToplingDB-8.04.2
 
-## Known issues
-mysqld may can not graceful stopped, it will coredump on stop, but this has no known harm.
+If your MyTopling-8.0.32 crashes on stop(pkill mysqld), it should be your
+libopenblas.so.0 is not openmp alternative of libopenblas, you should
+change your libopenblas.so.0 to openmp alternative.
