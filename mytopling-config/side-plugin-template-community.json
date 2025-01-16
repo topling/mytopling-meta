@@ -376,7 +376,8 @@
         },
         "column_families": {
           "default": "${default}",
-          "__system__": "${__system__}"
+          "__system__": "${__system__}",
+          "encrypt": "${encrypt}"
         }
       }
     }
