@@ -103,4 +103,4 @@ clean-topling-zip_table_reader:
 ${BOOST_OK_FILE}: | boost_1_77_0.tar.bz2
 	tar xjf boost_1_77_0.tar.bz2
 boost_1_77_0.tar.bz2:
-	wget https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2
+	wget https://mirrors.aliyun.com/blfs/conglomeration/boost/boost_1_77_0.tar.bz2
