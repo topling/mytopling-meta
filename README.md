@@ -61,6 +61,16 @@ gocryptfs ...
 # gocryptfs rpath : $ORIGIN:$ORIGIN/../lib:$ORIGIN/../lib/private
 ```
 
+## Alternative distribution name
+If you want to use an alternative distribution name, `make` with arg:
+```bash
+MYTOPLING_DIST_NAME="Your prefered name"
+```
+If you have your online shop for selling MyTopling, `make` with arg:
+```bash
+MYTOPLING_SHOP_ADDR="https://some.web.address.com/"
+```
+
 ## Notes
 * MyTopling-8.0.32 use ToplingDB-8.10.2
 * MyTopling-8.0.28 use ToplingDB-8.04.2
