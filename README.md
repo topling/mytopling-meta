@@ -20,8 +20,9 @@ sudo apt-get update -y
 sudo apt-get install -y gcc-12 libjemalloc-dev libaio-dev libgflags-dev \
     zlib1g-dev libbz2-dev libcurl4-gnutls-dev liburing-dev libsnappy-dev \
     libbz2-dev liblz4-dev libzstd-dev which python3 cmake libncurses5-dev \
-    pkg-config bison libudev-dev git libssl-dev g++ wget libopenblas-dev
-sudo apt remove libopenblas0-pthread # must!
+    pkg-config bison libudev-dev git libssl-dev g++ wget libopenblas-openmp-dev
+sudo apt remove libopenblas0-pthread # must!(if libopenblas-dev is installed )
+# If libopenblas-openmp-dev is installed instead of libopenblas-dev, libopenblas0-pthread may not be present.
 ```
 
 ## Before Compile
