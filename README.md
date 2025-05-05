@@ -8,7 +8,6 @@ sudo yum config-manager --set-enabled crb        # CentOS-9
 sudo yum install -y liburing-devel git gflags-devel libcurl-devel \
     snappy-devel zlib-devel bzip2-devel lz4-devel libaio-devel \
     cmake nfs-utils openssl-devel ncurses-devel libtirpc-devel \
-    libunwind-devel \
     rpcgen bison libudev-devel gcc-toolset-12 python3 which rpm-build openblas-devel
 sudo yum install perl-File-Copy # CentOS9
 ```
@@ -21,7 +20,6 @@ sudo apt-get update -y
 sudo apt-get install -y gcc-12 libjemalloc-dev libaio-dev libgflags-dev \
     zlib1g-dev libbz2-dev libcurl4-gnutls-dev liburing-dev libsnappy-dev \
     libbz2-dev liblz4-dev libzstd-dev which python3 cmake libncurses5-dev \
-    libunwind-dev \
     pkg-config bison libudev-dev git libssl-dev g++ wget libopenblas-openmp-dev
 sudo apt remove libopenblas0-pthread # must!(if libopenblas-dev is installed )
 # If libopenblas-openmp-dev is installed instead of libopenblas-dev, libopenblas0-pthread may not be present.
