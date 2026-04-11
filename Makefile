@@ -93,7 +93,7 @@ build-mytopling: install-toplingdb build-mytopling-pre
 
 install-mytopling: install-toplingdb build-mytopling
 	cmake --install ${MyToplingBuild} --prefix ${PREFIX}
-	mv ${PREFIX}/lib/{librocksdb*,libterark*} ${PREFIX}/lib/private/
+	mv ${PREFIX}/lib/librocksdb* ${PREFIX}/lib/private/
 	rm -f  ${PREFIX}/lib/plugin/libmytopling_dc.so
 	rm -fr ${PREFIX}/mysql-test
 	rm -fr ${PREFIX}/include
