@@ -13,12 +13,6 @@
 [submodule "toplingdb-sideplugin/topling-zip_table_reader"]
 	path = toplingdb-sideplugin/topling-zip_table_reader
 	url = https://github.com/topling/topling-zip_table_reader.git
-[submodule "toplingdb-sideplugin/topling-rocks"]
-	path = toplingdb-sideplugin/topling-rocks
-	url = git@github.com:rockeet/topling-rocks.git
-[submodule "toplingdb-sideplugin/cspp-memtable"]
-	path = toplingdb-sideplugin/cspp-memtable
-	url = git@github.com:topling/cspp-memtable.git
 [submodule "toplingdb-sideplugin/cspp-wbwi"]
 	path = toplingdb-sideplugin/cspp-wbwi
 	url = git@github.com:topling/cspp-wbwi.git
