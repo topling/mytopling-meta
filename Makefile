@@ -93,6 +93,10 @@ build-mytopling: install-toplingdb build-mytopling-pre
 
 install-mytopling: install-toplingdb build-mytopling
 	cmake --install ${MyToplingBuild} --prefix ${PREFIX}
+	install -C -m 755 mytopling-config/mytoplingd.sh mytopling-config/mytoplingd-conf.sh ${PREFIX}/bin/
+	install -d ${PREFIX}/etc
+	install -C -m 644 mytopling-config/side-plugin-template-*.json ${PREFIX}/etc/
+	install -C -m 644 mytopling-config/my.cnf ${PREFIX}/etc/
 	mv ${PREFIX}/lib/librocksdb* ${PREFIX}/lib/private/
 	rm -f  ${PREFIX}/lib/plugin/libmytopling_dc.so
 	rm -fr ${PREFIX}/mysql-test

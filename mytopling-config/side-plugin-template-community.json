@@ -3,7 +3,7 @@
     "document_root": "/var/lib/mysql/infolog",
     "hide_files_patterns": "*.sst|*.dbtmp",
     "num_threads": "50",
-    "listening_ports": "8000"
+    "listening_ports": "20139"
   },
   "permissions": {
     "web_compact": true
@@ -100,6 +100,16 @@
         "forceNeedCompact": true
       }
     },
+    "simple": {
+      "class": "SimpleTopTable",
+      "params": {
+        "writeMethod": "kToplingFileWrite",
+        "fileWriteBufferSize": 8192,
+        "collectProperties": true,
+        "forceNeedCompact": false,
+        "debugLevel": 0
+      }
+    },
     "bb": {
       "comment": "this TableFactory is for migrating existing MyRocks data to MyTopling",
       "class": "BlockBasedTable",
@@ -168,17 +178,18 @@
     "dispatch": {
       "class": "DispatcherTable",
       "params": {
-        "default": "sng",
+        "default": "simple",
         "readers": {
           "VecAutoSortTable": "auto_sort",
+          "SimpleTopTable": "simple",
           "BlockBasedTable": "bb",
           "CSPPMemTabTable": "cspp_memtab_sst",
           "ToplingZipTable": "dzip",
           "SingleFastTable": "sng"
         },
         "level_writers": [
-          "sng",
-          "sng",
+          "simple",
+          "simple",
           "bb",
           "bb",
           "bb",
@@ -192,16 +203,10 @@
     }
   },
   "MemTableRepFactory": {
-    "dyna": {
-      "class": "Dyna",
-      "params": {
-        "real_fac": "${cspp}"
-      }
-    },
     "cspp": {
       "class": "cspp",
       "params": {
-        "mem_cap": "4G",
+        "mem_cap": "16G",
         "chunk_size": "256K",
         "use_vm": false,
         "use_hugepage": false,
@@ -209,18 +214,7 @@
         "//1 convert_to_sst": "kDontConvert",
         "//2 convert_to_sst": "kDumpMem",
         "convert_to_sst": "kFileMmap",
-        "sync_sst_file": true,
-        "read_by_writer_token": true,
-        "token_use_idle": true
-      }
-    },
-    "cspp_small": {
-      "class": "cspp",
-      "params": {
-        "mem_cap": "16M",
-        "chunk_size": "32K",
-        "use_vm": false,
-        "use_hugepage": false,
+        "sync_sst_file": false,
         "read_by_writer_token": true,
         "token_use_idle": true
       }
@@ -297,8 +291,8 @@
     "default": {
       "template": "${common-cfo}",
       "sst_partitioner_factory": "by_prefix",
-      "memtable_factory": "${dyna}",
-      "write_buffer_size": "512M",
+      "memtable_factory": "${cspp}",
+      "write_buffer_size": "2G",
       "max_write_buffer_size_to_maintain": "256M",
       "target_file_size_base": "32M",
       "html_user_key_coder": "${hex_key_coder}",
@@ -313,7 +307,7 @@
     },
     "__system__": {
       "template": "${common-cfo}",
-      "memtable_factory": "${cspp_small}",
+      "memtable_factory": "${cspp}",
       "write_buffer_size": "8M",
       "target_file_size_base": "8M",
       "merge_operator": "${system_merge_op}"
@@ -338,7 +332,7 @@
   },
   "DBOptions": {
     "dbopt": {
-      "localTempDir": "/var/lib/mysql/tmp",
+      "//localTempDir": "/var/lib/mysql/tmp",
       "db_log_dir": "/var/lib/mysql/infolog/.rocksdb/",
       "allow_fdatasync": false,
       "advise_random_on_open": true,
@@ -351,8 +345,9 @@
       "max_log_file_size": "256M",
       "keep_log_file_num": 100,
       "memtable_as_log_index": true,
+      "memtable_crash_safe_recover": true,
       "max_total_wal_size": "5G",
-      "db_write_buffer_size": "2560M",
+      "db_write_buffer_size": "2G",
       "inplace_update_support": false,
       "WAL_size_limit_MB": 0,
       "wbwi_factory": "${cspp}",
