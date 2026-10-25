@@ -83,10 +83,10 @@ install-toplingdb: build-toplingdb
 ${MyToplingBuild}/Makefile: ${BOOST_OK_FILE}
 	cd mytopling; \
 	env BUILD_DIR=${MyToplingBuild} \
+	    DEBUG_LEVEL=${DEBUG_LEVEL} \
 	    bash -x build.sh \
 		-DWITH_UNIT_TESTS=OFF \
 		-DTOPLING_LIB_DIR=${TOPLING_LIB_DIR} \
-		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE_${DEBUG_LEVEL}} \
 		-DWITH_UNIT_TESTS=OFF \
 		${DMYTOPLING_DIST_NAME} \
 		${DWITH_LTO} \
