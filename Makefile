@@ -69,7 +69,7 @@ build-toplingdb:
 	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} shared_lib
 
 install-toplingdb: build-toplingdb
-	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} LIBDIR=${TOPLING_LIB_DIR} install
+	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} PREFIX=${PREFIX} LIBDIR=${TOPLING_LIB_DIR} install
 
 .PHONY: ${MyToplingBuild}/Makefile
 ${MyToplingBuild}/Makefile: ${BOOST_OK_FILE}
@@ -99,7 +99,7 @@ install-mytopling: install-toplingdb build-mytopling
 	rm -fr ${PREFIX}/include
 
 install-dcompact: install-toplingdb build-mytopling
-	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} LIBDIR=${TOPLING_LIB_DIR} $@
+	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} PREFIX=${PREFIX} LIBDIR=${TOPLING_LIB_DIR} $@
 	install  -C -m 755 ${MyToplingBuild}/plugin_output_directory/libmytopling_dc.so ${TOPLING_LIB_DIR}
 
 install: install-mytopling
