@@ -112,10 +112,22 @@ install-mytopling: install-toplingdb build-mytopling
 	rm -f  ${PREFIX}/lib/plugin/libmytopling_dc.so
 	rm -fr ${PREFIX}/mysql-test
 	rm -fr ${PREFIX}/include
+ifeq ($(STRIP_DEBUG_INFO),1)
+	install -d ${PREFIX}-debug-info/lib/private
+	for f in ${PREFIX}-debug-info/lib/librocksdb*; do \
+	  if [ -e "$$f" ]; then mv "$$f" ${PREFIX}-debug-info/lib/private/; fi; \
+	done
+	rm -f ${PREFIX}-debug-info/lib/plugin/libmytopling_dc.so.debug
+endif
 
 install-dcompact: install-toplingdb build-mytopling
 	+$(MAKE) -C toplingdb UPDATE_REPO=0 DEBUG_LEVEL=${DEBUG_LEVEL} PREFIX=${PREFIX} LIBDIR=${TOPLING_LIB_DIR} $@
 	install  -C -m 755 ${MyToplingBuild}/plugin_output_directory/libmytopling_dc.so ${TOPLING_LIB_DIR}
+ifeq ($(STRIP_DEBUG_INFO),1)
+	cmake -DSTRIP_DEBUG_INFO=1 -DDEBUG_INFO_PREFIX=${PREFIX} \
+	  -DDEBUG_INFO_FILES=${TOPLING_LIB_DIR}/libmytopling_dc.so \
+	  -P mytopling/cmake/install_debug_info.cmake
+endif
 
 install: install-mytopling
 
