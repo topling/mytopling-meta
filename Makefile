@@ -93,8 +93,10 @@ ${MyToplingBuild}/Makefile: ${BOOST_OK_FILE}
 		${MYTOPLING_CMAKE_EXTRA_ARGS} \
 	   ${DFORCE_CPU_ARCH}
 
+${MyToplingBuild}/CMakeFiles/Makefile2: ${MyToplingBuild}/Makefile
+
 # build-mytopling-pre build most componets which not dep on librocksdb.so
-build-mytopling-pre: ${MyToplingBuild}/Makefile
+build-mytopling-pre: ${MyToplingBuild}/Makefile ${MyToplingBuild}/CMakeFiles/Makefile2
 	+$(MAKE) -C ${MyToplingBuild} innobase binlog mysqlclient
 
 build-mytopling: install-toplingdb build-mytopling-pre
