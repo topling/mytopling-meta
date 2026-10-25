@@ -33,6 +33,14 @@ CMAKE_BUILD_TYPE_1 := RelWithDebInfo
 CMAKE_BUILD_TYPE_2 := Debug
 MyToplingBuild := $(shell realpath mytopling/build-${CMAKE_BUILD_TYPE_${DEBUG_LEVEL}})
 
+ifeq (${DEBUG_LEVEL},0)
+  ifeq (${USE_LTO},1)
+    DWITH_LTO := -DWITH_LTO=ON
+  else
+    DWITH_LTO := -DWITH_LTO=OFF
+  endif
+endif
+
 ifdef MYTOPLING_DIST_NAME
   DMYTOPLING_DIST_NAME := -DMYTOPLING_DIST_NAME="${MYTOPLING_DIST_NAME}" \
         -DCOMPILATION_COMMENT="${MYTOPLING_DIST_NAME} Enterprise" \
@@ -81,6 +89,7 @@ ${MyToplingBuild}/Makefile: ${BOOST_OK_FILE}
 		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE_${DEBUG_LEVEL}} \
 		-DWITH_UNIT_TESTS=OFF \
 		${DMYTOPLING_DIST_NAME} \
+		${DWITH_LTO} \
 		${MYTOPLING_CMAKE_EXTRA_ARGS} \
 	   ${DFORCE_CPU_ARCH}
 
