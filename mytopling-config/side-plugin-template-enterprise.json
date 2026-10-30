@@ -371,7 +371,6 @@
   },
   "DBOptions": {
     "dbopt": {
-      "//localTempDir": "/var/lib/mysql/tmp",
       "db_log_dir": "/var/lib/mysql/infolog/.rocksdb/",
       "allow_fdatasync": false,
       "advise_random_on_open": true,
